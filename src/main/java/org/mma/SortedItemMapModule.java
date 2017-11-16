@@ -1,6 +1,7 @@
 package org.mma;
 
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import org.mma.dto.SortedItemMap;
 
 class SortedItemMapModule extends SimpleModule {
 

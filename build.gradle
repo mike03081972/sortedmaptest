@@ -2,15 +2,12 @@ group 'org.mma'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
-apply plugin: 'application'
 
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
-
-mainClassName = "org.mma.Main"
 
 dependencies {
     compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.1',

@@ -1,20 +1,20 @@
-package org.mma;
+package org.mma.dto;
 
 import com.google.common.collect.Ordering;
 
 import java.util.*;
 
-class SortedItemMap extends ValueComparableMap<UUID,Item> {
+public class SortedItemMap extends ValueComparableMap<UUID,Item> {
 
-    SortedItemMap() {
+    public SortedItemMap() {
 
         super(Ordering.from((o1, o2) -> {
 
             if (o1 != null && o2 != null) {
-                Long tc1 = o1.getTc();
-                Long tc2 = o2.getTc();
+                Long in1 = o1.getIn();
+                Long in2 = o2.getIn();
 
-                return tc1.compareTo(tc2);
+                return in1.compareTo(in2);
             }
             if (o1 == null && o2 == null)
                 return 0;
@@ -25,7 +25,7 @@ class SortedItemMap extends ValueComparableMap<UUID,Item> {
         }), new HashMap<>());
     }
 
-    List<Item> getSortedList() {
+    public List<Item> getSortedList() {
 
         Collection<Item> objectValues = values();
 

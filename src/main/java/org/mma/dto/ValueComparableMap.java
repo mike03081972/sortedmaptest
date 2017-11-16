@@ -1,4 +1,4 @@
-package org.mma;
+package org.mma.dto;
 
 import java.util.HashMap;
 import java.util.Map;

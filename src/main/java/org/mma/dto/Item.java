@@ -1,8 +1,17 @@
 package org.mma.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.util.UUID;
 
-public class Item {
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = ExtendedItem1.class, name = "ExtendedItem1"),
+        @JsonSubTypes.Type(value = ExtendedItem2.class, name = "ExtendedItem2")}
+)public abstract class Item {
 
     private UUID id;
     private long in;

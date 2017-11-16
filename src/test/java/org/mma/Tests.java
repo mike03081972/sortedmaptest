@@ -3,10 +3,7 @@ package org.mma;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mma.dto.Item;
-import org.mma.dto.SortedItemMap;
-import org.mma.dto.Timeline;
-import org.mma.dto.Track;
+import org.mma.dto.*;
 
 import java.util.Map;
 import java.util.Set;
@@ -16,19 +13,53 @@ public class Tests {
 
     private Timeline timeline;
 
-    private static void displayMap(SortedItemMap map) {
+    private void displayTimeline(Timeline timelineToDisplay) {
 
-        for (Map.Entry<UUID, Item> entry : map.entrySet()) {
+        System.out.format("<========================================================================\n");
+
+        System.out.format("id         = %s\n", timelineToDisplay.getId());
+        System.out.format("trackCount = %d\n", timelineToDisplay.getTracks().size());
+
+        for (Track track : timelineToDisplay.getTracks()) {
+
+            displayTrack(track);
+        }
+
+        System.out.format("========================================================================>\n");
+    }
+
+    private void displayTrack(Track trackToDisplay) {
+
+        System.out.format("\tid        = %s\n", trackToDisplay.getId());
+        System.out.format("\titemCount = %d\n", trackToDisplay.getItems().size());
+
+        for (Map.Entry<UUID, Item> entry : trackToDisplay.getItems().entrySet()) {
 
             Item item = entry.getValue();
 
-            System.out.format("UUID (%s) - IN (%04d) - DUR (%s)\n", item.getId().toString(), item.getIn(), item.getDuration());
+            displayItem(item);
         }
     }
 
-    private static void displayItem(Item item) {
+    private void displayItem(Item item) {
 
-        System.out.format("UUID (%s) - IN (%04d) - DUR (%s)\n", item.getId().toString(), item.getIn(), item.getDuration());
+        System.out.format("\t\tid       = %s\n", item.getId());
+        System.out.format("\t\tin       = %s\n", item.getIn());
+        System.out.format("\t\tduration = %s\n", item.getDuration());
+
+        if (item instanceof ExtendedItem1) {
+
+            ExtendedItem1 extendedItem = (ExtendedItem1)item;
+
+            System.out.format("\t\tname     = %s\n", extendedItem.getName());
+        }
+
+        if (item instanceof ExtendedItem2) {
+
+            ExtendedItem2 extendedItem = (ExtendedItem2)item;
+
+            System.out.format("\t\tvalue    = %s\n", extendedItem.getValue());
+        }
     }
 
     @Before
@@ -37,31 +68,31 @@ public class Tests {
         SortedItemMap items = new SortedItemMap();
 
         UUID uuid1 = TestUUID.getItemId(1);
-        Item item1 = new Item();
+        ExtendedItem1 item1 = new ExtendedItem1();
         item1.setId(uuid1);
         item1.setIn(0);
         items.put(item1.getId(), item1);
 
         UUID uuid2 = TestUUID.getItemId(2);
-        Item item2 = new Item();
+        ExtendedItem1 item2 = new ExtendedItem1();
         item2.setId(uuid2);
         item2.setIn(50);
         items.put(item2.getId(), item2);
 
         UUID uuid3 = TestUUID.getItemId(3);
-        Item item3 = new Item();
+        ExtendedItem1 item3 = new ExtendedItem1();
         item3.setId(uuid3);
         item3.setIn(260);
         items.put(item3.getId(), item3);
 
         UUID uuid4 = TestUUID.getItemId(4);
-        Item item4 = new Item();
+        ExtendedItem2 item4 = new ExtendedItem2();
         item4.setId(uuid4);
         item4.setIn(100);
         items.put(item4.getId(), item4);
 
         UUID uuid5 = TestUUID.getItemId(5);
-        Item item5 = new Item();
+        ExtendedItem2 item5 = new ExtendedItem2();
         item5.setId(uuid5);
         item5.setIn(25);
         items.put(item5.getId(), item5);
@@ -81,14 +112,14 @@ public class Tests {
         timeline.setId( TestUUID.getTimelineId(1) );
 
         timeline.getTracks().add(track);
+
+        //displayTimeline(timeline);
     }
 
     @Test
     public void checkThatItemsAreCorrectlySortededTest() {
 
         SortedItemMap itemsMap = timeline.getTracks().get(0).getItems();
-
-        //displayMap(itemsMap);
 
         Set<Map.Entry<UUID,Item>> itemsSet = itemsMap.entrySet();
 
@@ -116,12 +147,12 @@ public class Tests {
         SortedItemMap itemsMap = timeline.getTracks().get(0).getItems();
 
         UUID uuid = TestUUID.getItemId(6);
-        Item item = new Item();
+        ExtendedItem1 item = new ExtendedItem1();
         item.setId(uuid);
         item.setIn(10);
         itemsMap.put(item.getId(), item);
 
-        //displayMap(itemsMap);
+        //displayTimeline(timeline);
 
         Assert.assertEquals( 6 , itemsMap.size() );
 
@@ -137,7 +168,7 @@ public class Tests {
 
         itemsMap.remove( TestUUID.getItemId(5) );
 
-        //displayMap(itemsMap);
+        //displayTimeline(timeline);
 
         Assert.assertEquals( 4 , itemsMap.size() );
     }
@@ -156,15 +187,19 @@ public class Tests {
             item.setIn( item.getIn() + incrementBy );
         }
 
-        //displayMap(itemsMap);
+        //displayTimeline(timeline);
     }
 
     @Test
-    public void serializeTest() {
+    public void serializeDeserializeTest() {
 
         String rawText = TimelineSerializer.serialize(timeline);
 
-        System.out.println(rawText);
+        //System.out.println(rawText);
+
+        Timeline newTimeline = TimelineDeserializer.deserialize(rawText);
+
+        //displayTimeline(newTimeline);
     }
 
     @Test
@@ -174,4 +209,5 @@ public class Tests {
 
         System.out.println(rawText);
     }
+
 }

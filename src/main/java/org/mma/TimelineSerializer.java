@@ -19,12 +19,10 @@ public class TimelineSerializer {
         try {
 
             rawText = mapper.writeValueAsString(timeline);
-
-            //Timeline convertedFromJson = mapper.readValue(jsonText, Timeline.class);
         }
         catch (IOException ex) {
 
-            System.out.println("Error converting MAP to JSON : " + ex);
+            System.out.println("Error converting TIMELINE to JSON : " + ex);
         }
 
         return rawText;
@@ -39,12 +37,10 @@ public class TimelineSerializer {
         try {
 
             rawText = mapper.writeValueAsString(timeline);
-
-            //Timeline convertedFromJson = mapper.readValue(rawText, Timeline.class);
         }
         catch (IOException ex) {
 
-            System.out.println("Error converting MAP to JSON : " + ex);
+            System.out.println("Error converting TIMELINE to JSON : " + ex);
         }
 
         return rawText;

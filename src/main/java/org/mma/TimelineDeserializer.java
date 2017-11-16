@@ -27,7 +27,7 @@ public class TimelineDeserializer {
 
     public static Timeline customDeserialize(String rawText) {
 
-        /*ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper();
 
         try {
 
@@ -38,7 +38,7 @@ public class TimelineDeserializer {
         catch (IOException ex) {
 
             System.out.println("Error converting JSON top TIMELINE : " + ex);
-        }*/
+        }
 
         return null;
     }

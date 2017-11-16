@@ -17,12 +17,15 @@ public class Tests {
 
         System.out.format("<========================================================================\n");
 
-        System.out.format("id         = %s\n", timelineToDisplay.getId());
-        System.out.format("trackCount = %d\n", timelineToDisplay.getTracks().size());
+        if (timelineToDisplay != null) {
 
-        for (Track track : timelineToDisplay.getTracks()) {
+            System.out.format("id         = %s\n", timelineToDisplay.getId());
+            System.out.format("trackCount = %d\n", timelineToDisplay.getTracks().size());
 
-            displayTrack(track);
+            for (Track track : timelineToDisplay.getTracks()) {
+
+                displayTrack(track);
+            }
         }
 
         System.out.format("========================================================================>\n");
@@ -207,7 +210,11 @@ public class Tests {
 
         String rawText = TimelineSerializer.customSerialize(timeline);
 
-        System.out.println(rawText);
+        //System.out.println(rawText);
+
+        Timeline newTimeline = TimelineDeserializer.customDeserialize(rawText);
+
+        displayTimeline(newTimeline);
     }
 
 }

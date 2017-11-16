@@ -1,4 +1,4 @@
-package evs.com.mma;
+package org.mma;
 
 import com.google.common.collect.Ordering;
 

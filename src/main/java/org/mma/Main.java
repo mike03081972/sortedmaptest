@@ -1,4 +1,4 @@
-package evs.com.mma;
+package org.mma;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

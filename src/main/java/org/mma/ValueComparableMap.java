@@ -1,4 +1,4 @@
-package evs.com.mma;
+package org.mma;
 
 import java.util.HashMap;
 import java.util.Map;

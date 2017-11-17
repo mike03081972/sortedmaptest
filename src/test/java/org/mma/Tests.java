@@ -198,7 +198,7 @@ public class Tests {
 
         String rawText = TimelineSerializer.serialize(timeline);
 
-        System.out.println(rawText);
+        //System.out.println(rawText);
 
         //Timeline newTimeline = TimelineDeserializer.deserialize(rawText);
 
@@ -208,9 +208,11 @@ public class Tests {
     @Test
     public void customSerializeTest() {
 
+        //displayTimeline(timeline);
+
         String rawText = TimelineSerializer.customSerialize(timeline);
 
-        System.out.println(rawText);
+        //System.out.println(rawText);
 
         Timeline newTimeline = TimelineDeserializer.customDeserialize(rawText);
 

@@ -27,7 +27,7 @@ public class TimelineDeserializer {
 
     public static Timeline customDeserialize(String rawText) {
 
-        ObjectMapper mapper = new ObjectMapper();
+        CustomObjectMapper mapper = new CustomObjectMapper();
 
         try {
 

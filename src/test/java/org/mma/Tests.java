@@ -194,13 +194,13 @@ public class Tests {
     }
 
     @Test
-    public void serializeDeserializeTest() {
+        public void serializeDeserializeTest() {
 
         String rawText = TimelineSerializer.serialize(timeline);
 
-        //System.out.println(rawText);
+        System.out.println(rawText);
 
-        Timeline newTimeline = TimelineDeserializer.deserialize(rawText);
+        //Timeline newTimeline = TimelineDeserializer.deserialize(rawText);
 
         //displayTimeline(newTimeline);
     }
@@ -210,11 +210,11 @@ public class Tests {
 
         String rawText = TimelineSerializer.customSerialize(timeline);
 
-        //System.out.println(rawText);
+        System.out.println(rawText);
 
         Timeline newTimeline = TimelineDeserializer.customDeserialize(rawText);
 
-        displayTimeline(newTimeline);
+        //displayTimeline(newTimeline);
     }
 
 }

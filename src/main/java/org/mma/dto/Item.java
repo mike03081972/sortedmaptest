@@ -9,8 +9,8 @@ import java.util.UUID;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = ExtendedItem1.class, name = "ExtendedItem1"),
-        @JsonSubTypes.Type(value = ExtendedItem2.class, name = "ExtendedItem2")}
+        @JsonSubTypes.Type(value = ExtendedItem1.class),
+        @JsonSubTypes.Type(value = ExtendedItem2.class)}
 )public abstract class Item {
 
     private UUID id;
